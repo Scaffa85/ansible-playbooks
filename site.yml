@@ -1,0 +1,22 @@
+---
+
+- name: apply common configuration to all nodes
+  hosts: all
+  remote_user: vagrant
+  
+  roles:
+    - common
+
+- name: install java8
+  hosts: jenkins-master
+  remote_user: vagrant
+
+  roles:
+    - oracle-java
+
+- name: install jenkins-master
+  hosts: jenkins-master
+  remote_user: vagrant
+
+  roles:
+    - jenkins-master
