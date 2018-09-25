@@ -7,16 +7,17 @@
   roles:
     - common
 
-- name: install java8
-  hosts: jenkins-master
-  remote_user: vagrant
-
-  roles:
-    - oracle-java
-
 - name: install jenkins-master
   hosts: jenkins-master
   remote_user: vagrant
 
   roles:
+    - oracle-java
     - jenkins-master
+
+- name: install gitlab
+  hosts: gitlab
+  remote_user: vagrant
+
+  roles:
+    - gitlab
