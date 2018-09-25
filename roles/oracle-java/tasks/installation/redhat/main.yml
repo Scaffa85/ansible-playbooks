@@ -33,6 +33,8 @@
     - { path: "{{ oracle_java_home }}/bin", exe: 'keytool' }
     - { path: "{{ oracle_java_home }}/bin", exe: 'javac' }
     - { path: "{{ oracle_java_home }}/bin", exe: 'javadoc' }
+  loop_control:
+    loop_var: item
   become: yes
   when: (
           oracle_java_set_as_default and
