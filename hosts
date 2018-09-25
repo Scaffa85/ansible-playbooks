@@ -3,11 +3,15 @@
 [rhel7:children]
 jenkins-master
 jenkins-slave
+gitlab
 
 [jenkins-master]
 jenkins-master-1 ansible_ssh_host=192.168.33.20
 
 [jenkins-slave]
 #jenkins-slave-1 ansible_ssh_host=192.168.33.21
+
+[gitlab]
+gitlab-1 ansible_ssh_host=192.168.33.30
 
 
