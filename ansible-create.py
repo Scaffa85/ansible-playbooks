@@ -11,6 +11,7 @@ parser=argparse.ArgumentParser(
 parser.add_argument("--role", action="store", default="common", dest="role", help="Enter the name of a new role you would like to initialize" )
 args=parser.parse_args()
 
+# Casts contents of 'role' destination (from ArgumentParser) to a string.
 args=str(args.role)
 
 # Directory's which exist at the base level of the playbooks directory.
