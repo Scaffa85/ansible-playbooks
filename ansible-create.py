@@ -12,7 +12,7 @@ parser.add_argument("--role", action="store", default="common", dest="role", hel
 args=parser.parse_args()
 
 # Casts contents of 'role' destination (from ArgumentParser) to a string.
-args=str(args.role)
+args=str.lower(args.role)
 
 # Directory's which exist at the base level of the playbooks directory.
 dir_list = ["group_vars", "host_vars", "library", "module_utils", "filter_plugins",]
@@ -24,9 +24,11 @@ dir_nest = ["roles/"+ args +"/tasks","roles/"+ args +"/handlers","roles/"+ args 
 # Create parent folders
 for d in dir_list:
   if not os.path.exists(d):
+      print "Creating " + d + "."
       os.makedirs(d)
 
 # Create nested folders
 for n in dir_nest:
     if not os.path.exists(n):
+        print "Creating " + n + "."
         os.makedirs(n)
