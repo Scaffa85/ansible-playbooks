@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/local/bin/python
 import os
 import argparse
 
@@ -8,10 +8,11 @@ import argparse
 # Set's up '-h' flag and populates with information.
 parser=argparse.ArgumentParser(
         description='''This script sets up an ansible playbook folder structure as per the best practices prescribed by RedHat.''')
-parser.add_argument('--role', default='common', help='Enter the name of a new role you would like to initialize' )
-args=str(parser.parse_args())
+parser.add_argument("--role", action="store", default="common", dest="role", help="Enter the name of a new role you would like to initialize" )
+args=parser.parse_args()
 
-print args
+args=str(args.role)
+
 # Directory's which exist at the base level of the playbooks directory.
 dir_list = ["group_vars", "host_vars", "library", "module_utils", "filter_plugins",]
 
