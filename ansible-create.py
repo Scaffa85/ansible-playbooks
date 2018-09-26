@@ -1,4 +1,4 @@
-#!/usr/local/bin/python3
+#!/usr/local/bin/python
 import os
 import argparse
 
@@ -8,14 +8,17 @@ import argparse
 # Set's up '-h' flag and populates with information.
 parser=argparse.ArgumentParser(
         description='''This script sets up an ansible playbook folder structure as per the best practices prescribed by RedHat.''')
-parser.add_argument('--role', default='common', help='Enter the name of a new role you would like to initialize' )
+parser.add_argument("--role", action="store", default="common", dest="role", help="Enter the name of a new role you would like to initialize" )
 args=parser.parse_args()
+
+# Casts contents of 'role' destination (from ArgumentParser) to a string.
+args=str(args.role)
 
 # Directory's which exist at the base level of the playbooks directory.
 dir_list = ["group_vars", "host_vars", "library", "module_utils", "filter_plugins",]
 
 # Directory's which are nested inside a role.
-dir_nest = ["roles/common/tasks","roles/common/handlers","roles/common/templates","roles/common/files","roles/common/vars","roles/common/defaults","roles/common/meta","roles/common/library","roles/common/module_utils","roles/common/lookup_plugins"]
+dir_nest = ["roles/"+ args +"/tasks","roles/"+ args +"/handlers","roles/"+ args +"/templates","roles/"+ args +"/files","roles/"+ args +"/vars","roles/"+ args +"/defaults","roles/"+ args +"/meta","roles/"+ args +"/library","roles/"+ args +"/module_utils","roles/"+ args +"/lookup_plugins"]
 
 
 # Create parent folders

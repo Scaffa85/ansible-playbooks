@@ -18,11 +18,21 @@
     state: present
     key: "{{ jenkins_repo_key_url }}"
 
+- name: Check local filesystem for specified Jenkins version.
+  local_action: stat path={{ role_path }}/files/jenkins-{{ jenkins_version }}-1.1.noarch.rpm
+  register: jenkins_local_copy
+
+- name: Copy local Jenkins version to remote system.
+  copy:
+    src: "files/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
+    dest: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
+  when: jenkins_local_copy is defined
+  
 - name: Download specific Jenkins version.
   get_url:
     url: "{{ jenkins_pkg_url }}/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
     dest: "/tmp/jenkins-{{ jenkins_version }}-1.1.noarch.rpm"
-  when: jenkins_version is defined
+  when: jenkins_version is defined and jenkins_local_copy is not defined
 
 - name: Check if we downloaded a specific version of Jenkins.
   stat:
