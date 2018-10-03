@@ -2,6 +2,8 @@
 import os
 import argparse
 
+# Author: Craig Simpson
+# GitHub: https://github.com/Scaffa85
 # This script sets up ansible playbooks folder structures, as per;
 # http://docs.ansible.com/ansible/latest/user_guide/playbooks_best_practices.html
 
